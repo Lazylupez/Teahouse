@@ -1,10 +1,10 @@
 body {
     background: rgb(202,197,160);
     background: linear-gradient(to bottom, #e0d9c0, #cac580);
-    font-family: 'Press Start 2P', cursive;
+    font-family: 'Fusion Pixel 12px Monospaced', monospace !important;
     color: #4b3621;
     margin: 0;
-    padding: 10px;
+    padding: 20px;
     min-height: 100vh;
     touch-action: manipulation;
 }
@@ -12,19 +12,27 @@ body {
 h1, h2, h3 {
     text-align: center;
     text-shadow: 2px 2px #fff;
+    letter-spacing: 4px; /* 字间距大 */
 }
 
-span { cursor: pointer; padding: 8px; min-width: 30px; min-height: 44px; display: inline-block; }
+#main-title {
+    font-size: 1.4em;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+span { cursor: pointer; padding: 10px; min-width: 40px; min-height: 50px; display: inline-block; }
 
 button, input, textarea {
-    font-family: inherit;
-    padding: 12px;
-    margin: 10px 0;
-    width: 100%;
-    border: 3px solid #8b4513;
+    font-family: inherit !important;
+    padding: 15px;
+    margin: 15px auto;
+    display: block;
+    width: 90%;
+    border: 4px solid #8b4513;
     background: #f5deb3;
     box-sizing: border-box;
-    font-size: 1em;
+    font-size: 1.2em;
 }
 
 button {
@@ -38,41 +46,36 @@ ul { list-style: none; padding: 0; }
 
 li {
     background: #f5deb3;
-    border: 3px solid #8b4513;
-    padding: 15px;
-    margin: 15px 0;
-    position: relative;
+    border: 4px solid #8b4513;
+    padding: 20px;
+    margin: 20px 0;
     cursor: pointer;
+    font-size: 1.1em;
 }
 
-.prompt { font-size: 0.8em; color: #8b4513; margin: 5px 0; text-align: center; }
+.prompt { font-size: 0.9em; color: #8b4513; text-align: center; }
+
+#home > button, #home > input { width: 90%; margin: 15px auto; display: block; }
+
+#search-box + button { margin-top: 0; } /* 搜索按钮紧跟 */
 
 #submit-animation, #vote-animation {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    pointer-events: none;
-    z-index: 100;
+    position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    pointer-events: none; z-index: 100;
 }
 
 .steam {
-    width: 16px;
-    height: 16px;
-    background: rgba(255,255,255,0.7);
-    border-radius: 50%;
-    animation: steamRise 1.5s ease-out forwards;
+    width: 20px; height: 20px; background: rgba(255,255,255,0.8);
+    border-radius: 50%; animation: steamRise 1.5s ease-out forwards;
 }
 
 @keyframes steamRise {
-    0% { transform: translateY(0); opacity: 0.7; }
-    100% { transform: translateY(-80px); opacity: 0; }
+    0% { transform: translateY(0); opacity: 0.8; }
+    100% { transform: translateY(-100px); opacity: 0; }
 }
 
 .leaf {
-    width: 12px;
-    height: 12px;
-    background: #228B22;
+    width: 15px; height: 15px; background: #228B22;
     animation: leafFade 1.5s ease-out forwards;
 }
 
@@ -82,9 +85,20 @@ li {
 }
 
 #teacup {
-    width: 64px;
-    height: 64px;
-    margin: 20px auto;
-    background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAAVklEQVR4nGN8//HLzEyMDP9ZGVYGU8E0EG0D0cawBqgWBIeA6wBSLbgOBOcB0zQwDURbgGiD8xAYdYFpIBgGpjUAJqFpIBgGpjUgeZ+B6SgY8x4GpfEfhqXhG4al4RsGpfEblsYI1jMAAAAASUVORK5CYII=') no-repeat center;
+    width: 100px;
+    height: 100px;
+    margin: 30px auto;
+    background: url('https://i.imgur.com/0nK3j0P.png') no-repeat center; /* 可靠像素茶杯 */
     background-size: contain;
+    position: relative;
+}
+
+#teacup::after { /* 蒸汽 */
+    content: '';
+    position: absolute;
+    width: 20px; height: 20px;
+    background: rgba(255,255,255,0.6);
+    border-radius: 50%;
+    top: -20px; left: 40px;
+    animation: steamRise 2s infinite;
 }
