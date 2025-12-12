@@ -88,7 +88,7 @@ li {
     width: 100px;
     height: 100px;
     margin: 30px auto;
-    background: url('https://i.imgur.com/0nK3j0P.png') no-repeat center; /* 可靠像素茶杯 */
+    background: url('https://raw.githubusercontent.com/TakWolf/fusion-pixel-font/master/assets/preview/teacup.png') no-repeat center; /* 稳定GitHub链接 */
     background-size: contain;
     position: relative;
 }
