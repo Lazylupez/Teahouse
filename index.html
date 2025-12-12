@@ -4,10 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>现实逃离の茶水间</title>
-    <!-- Fusion Pixel 中文像素字体 CDN -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/TakWolf/fusion-pixel-font@master/dist/fusion-pixel-12px-monospaced-otf/fusion-pixel-12px-monospaced.min.css">
     <link rel="stylesheet" href="style.css">
-    <!-- Firebase Compat SDK -->
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
@@ -16,20 +13,20 @@
 </head>
 <body>
     <div id="title-container">
-        <h1 id="main-title" style="white-space: nowrap; font-size: 1.4em; overflow: hidden; text-overflow: ellipsis;">
-    <span data-char="现">现</span><span data-char="实">实</span><span data-char="逃">逃</span><span data-char="离">离</span><span data-char="の">の</span><span data-char="茶">茶</span><span data-char="水">水</span><span data-char="间">间</span>
-</h1>
+        <h1 id="main-title">
+            <span data-char="现">现</span><span data-char="实">实</span><span data-char="逃">逃</span><span data-char="离">离</span><span data-char="の">の</span><span data-char="茶">茶</span><span data-char="水">水</span><span data-char="间">间</span>
+        </h1>
         <div id="teacup"></div>
     </div>
 
     <div id="admin-login" style="display:none;">
         <input type="password" id="admin-pass" placeholder="管理员密码">
-        <button onclick="loginAdmin()">进入管理</button>
+        <button onclick="loginAdmin()">进入</button>
     </div>
 
     <div id="main-app">
         <section id="home">
-            <input type="text" id="search-box" placeholder="搜索议题标题...">
+            <input type="text" id="search-box" placeholder="搜索议题标题">
             <button onclick="searchTopics()">搜索</button>
             <button onclick="showSubmit()">提交议题</button>
             <button onclick="showVote()" id="vote-btn" style="display:none;">投票</button>
@@ -46,17 +43,17 @@
             <h2>提交议题</h2>
             <input type="text" id="topic-title" placeholder="标题">
             <textarea id="topic-content" placeholder="内容 (≤300字)" maxlength="300"></textarea>
-            <input type="text" id="submitter-name" placeholder="你的昵称 (如果不匿名)">
-            <label><input type="checkbox" id="anon-submit"> 匿名提交 (显示“匿名茶客”)</label>
+            <input type="text" id="submitter-name" placeholder="昵称 (非匿名必填)">
+            <label><input type="checkbox" id="anon-submit"> 匿名 (显示“匿名茶客”)</label>
             <p>今日剩余: <span id="remain-submits">3</span></p>
             <button onclick="submitTopic()">提交</button>
             <div id="submit-animation"></div>
         </section>
 
         <section id="vote-section" style="display:none;">
-            <h2>投票 (拖拽排序)</h2>
+            <h2>投票 (拖拽排序, 第一高分)</h2>
             <ul id="sortable-vote"></ul>
-            <button onclick="submitVote()">提交</button>
+            <button onclick="submitVote()">提交投票</button>
             <div id="vote-animation"></div>
         </section>
 
@@ -66,18 +63,15 @@
             <p id="meeting-date"></p>
             <h3>感想区</h3>
             <ul id="comments-list"></ul>
-            <textarea id="new-comment" placeholder="添加感想"></textarea>
-            <p class="prompt">可以选择在感想中留下署名。</p>
+            <textarea id="new-comment" placeholder="添加感想 (可在文本署名)"></textarea>
             <button onclick="addComment()">提交</button>
         </section>
 
         <section id="admin-section" style="display:none;">
             <h2>管理员控制台</h2>
             <button onclick="createRound()">激活当前轮次</button>
-            <input type="datetime-local" id="deadline-input">
-            <button onclick="setDeadline()">设置截止</button>
             <button onclick="endRound()">结束轮次并选当选议题</button>
-            <ul id="admin-topics"></ul>
+            <ul id="admin-topics-list"></ul>
         </section>
     </div>
 </body>
