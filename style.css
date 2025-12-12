@@ -1,40 +1,34 @@
-*, *::before, *::after {
-    font-family: 'Fusion Pixel 12px Monospaced', monospace !important;
-}
 body {
     background: rgb(202,197,160);
     background: linear-gradient(to bottom, #e0d9c0, #cac580);
-    font-family: 'Fusion Pixel 12px Monospaced', monospace !important;
+    font-family: monospace, 'Courier New', Courier;
     color: #4b3621;
     margin: 0;
     padding: 20px;
     min-height: 100vh;
-    touch-action: manipulation;
+    image-rendering: pixelated;
+    letter-spacing: 2px;
+}
+
+*, button, input, textarea {
+    font-family: monospace !important;
+    letter-spacing: 2px !important;
 }
 
 h1, h2, h3 {
     text-align: center;
     text-shadow: 2px 2px #fff;
-    letter-spacing: 2px; /* 原来可能是4px，改小一点避免字被挤掉 */
 }
 
 #main-title {
-    font-size: 1.3em; /* 稍微缩小，确保所有字显示 */
     white-space: nowrap;
+    font-size: 1.3em;
     overflow: visible;
-    letter-spacing: 3px; /* 可微调，3px通常正好 */
 }
 
-#main-title {
-    font-size: 1.4em;
-    white-space: nowrap;
-    overflow: hidden;
-}
-
-span { cursor: pointer; padding: 10px; min-width: 40px; min-height: 50px; display: inline-block; }
+span { cursor: pointer; padding: 10px; display: inline-block; }
 
 button, input, textarea {
-    font-family: inherit !important;
     padding: 15px;
     margin: 15px auto;
     display: block;
@@ -45,70 +39,10 @@ button, input, textarea {
     font-size: 1.2em;
 }
 
-button {
-    cursor: pointer;
-    transition: transform 0.1s;
-}
-
 button:active { transform: translateY(4px); }
 
 ul { list-style: none; padding: 0; }
 
 li {
     background: #f5deb3;
-    border: 4px solid #8b4513;
-    padding: 20px;
-    margin: 20px 0;
-    cursor: pointer;
-    font-size: 1.1em;
-}
-
-.prompt { font-size: 0.9em; color: #8b4513; text-align: center; }
-
-#home > button, #home > input { width: 90%; margin: 15px auto; display: block; }
-
-#search-box + button { margin-top: 0; } /* 搜索按钮紧跟 */
-
-#submit-animation, #vote-animation {
-    position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
-    pointer-events: none; z-index: 100;
-}
-
-.steam {
-    width: 20px; height: 20px; background: rgba(255,255,255,0.8);
-    border-radius: 50%; animation: steamRise 1.5s ease-out forwards;
-}
-
-@keyframes steamRise {
-    0% { transform: translateY(0); opacity: 0.8; }
-    100% { transform: translateY(-100px); opacity: 0; }
-}
-
-.leaf {
-    width: 15px; height: 15px; background: #228B22;
-    animation: leafFade 1.5s ease-out forwards;
-}
-
-@keyframes leafFade {
-    0% { opacity: 1; transform: rotate(0deg); }
-    100% { opacity: 0; transform: rotate(360deg); }
-}
-
-#teacup {
-    width: 100px;
-    height: 100px;
-    margin: 30px auto;
-    background: url('https://raw.githubusercontent.com/TakWolf/fusion-pixel-font/master/assets/preview/teacup.png') no-repeat center; /* 稳定GitHub链接 */
-    background-size: contain;
-    position: relative;
-}
-
-#teacup::after { /* 蒸汽 */
-    content: '';
-    position: absolute;
-    width: 20px; height: 20px;
-    background: rgba(255,255,255,0.6);
-    border-radius: 50%;
-    top: -20px; left: 40px;
-    animation: steamRise 2s infinite;
-}
+    border: 4px solid #8b451
