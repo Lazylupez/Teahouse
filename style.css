@@ -1,32 +1,24 @@
-/* style.css (修复和增强版) */
-
-/* 1. 引入中文字体（请替换为你实际的字体文件路径） */
-/* @font-face {
-    font-family: 'PixelFontChinese';
-    src: url('pixel_chinese.woff2') format('woff2'); /* 假设你使用 woff2 格式 */
-    font-weight: normal;
-    font-style: normal;
-}
-*/
-/* 注意：由于你没有提供字体文件，我将使用常见的像素英文字体作为后备 */
+/* style.css (修复了字体和动画) */
 
 body {
-    /* 你的背景和颜色保持不变 */
+    background: rgb(202,197,160);
     background: linear-gradient(to bottom, #e0d9c0, #cac580);
-    /* 优先使用你想要的像素字体，后备 Monospace */
-    font-family: 'PixelFontChinese', monospace, 'Courier New', Courier; 
+    /* 应用 Google Fonts 的像素字体 */
+    font-family: 'Press Start 2P', monospace, 'Courier New', Courier; 
     color: #4b3621;
     margin: 0;
     padding: 20px;
     min-height: 100vh;
-    image-rendering: pixelated;
-    letter-spacing: 2px;
+    /* 强制像素渲染风格 */
+    image-rendering: pixelated; 
+    /* 像素字体需要更大的字间距 */
+    letter-spacing: 4px; 
 }
 
 *, button, input, textarea {
-    /* 确保所有元素都使用像素字体 */
-    font-family: 'PixelFontChinese', monospace !important;
-    letter-spacing: 2px !important;
+    /* 确保所有元素使用像素字体 */
+    font-family: 'Press Start 2P', monospace !important;
+    letter-spacing: 4px !important;
 }
 
 h1, h2, h3 {
@@ -53,22 +45,22 @@ button, input, textarea {
     font-size: 1.2em;
 }
 
-button:active { transform: translateY(4px); }
+button:active { 
+    transform: translateY(4px); 
+    box-shadow: none; /* 移除点击效果 */
+}
 
 ul { list-style: none; padding: 0; }
 
 li {
     background: #f5deb3;
-    /* 修复你代码中被截断的部分 */
     border: 4px solid #8b4513; 
     padding: 10px;
     margin: 10px 0;
     line-height: 1.5;
 }
 
-/* --- 修复动画问题所需的样式 --- */
-
-/* 2. 茶杯图样 */
+/* --- 茶杯图样样式 --- */
 #title-container {
     display: flex;
     justify-content: center;
@@ -86,6 +78,7 @@ li {
     border-radius: 0 0 10px 10px;
     position: relative;
 }
+/* 茶杯内茶水/边框 */
 #teacup::before {
     content: '';
     position: absolute;
@@ -100,26 +93,27 @@ li {
 }
 
 
-/* 3. 蒸汽动画基础样式 */
+/* --- 动画容器样式 --- */
+#submit-animation, #vote-animation {
+    text-align: center;
+    height: 60px; /* 留出动画空间 */
+    position: relative;
+    overflow: hidden; 
+    margin: 20px auto;
+}
+
+/* 蒸汽动画元素 */
 .steam {
     width: 10px;
     height: 10px;
     background-color: rgba(255, 255, 255, 0.7);
     border-radius: 50%;
     position: absolute;
-    top: 50%;
+    top: 50px; /* 从茶杯口附近开始 */
     left: 50%;
     opacity: 0;
     animation: steam-puff 2s ease-out infinite;
     transform: translate(-50%, -50%);
-}
-
-#submit-animation, #vote-animation {
-    text-align: center;
-    height: 50px; /* 留出动画空间 */
-    position: relative;
-    overflow: hidden; /* 确保蒸汽/茶叶不会影响布局 */
-    margin: 20px auto;
 }
 
 /* 蒸汽动画关键帧 */
@@ -134,7 +128,7 @@ li {
     }
 }
 
-/* 茶叶动画基础样式 */
+/* 茶叶动画元素 */
 .leaf {
     width: 8px;
     height: 8px;
