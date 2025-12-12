@@ -1,24 +1,22 @@
-/* style.css (修复了字体和动画) */
+/* style.css (使用文泉驿点阵字体，修复了茶杯和动画) */
 
 body {
     background: rgb(202,197,160);
     background: linear-gradient(to bottom, #e0d9c0, #cac580);
-    /* 应用 Google Fonts 的像素字体 */
-    font-family: 'Press Start 2P', monospace, 'Courier New', Courier; 
+    /* 核心修改：使用 'WenQuanYi Dotum' */
+    font-family: 'WenQuanYi Dotum', monospace, 'Courier New', Courier; 
     color: #4b3621;
     margin: 0;
     padding: 20px;
     min-height: 100vh;
-    /* 强制像素渲染风格 */
     image-rendering: pixelated; 
-    /* 像素字体需要更大的字间距 */
-    letter-spacing: 4px; 
+    letter-spacing: 2px; 
 }
 
 *, button, input, textarea {
-    /* 确保所有元素使用像素字体 */
-    font-family: 'Press Start 2P', monospace !important;
-    letter-spacing: 4px !important;
+    /* 确保所有元素应用此字体 */
+    font-family: 'WenQuanYi Dotum', monospace !important;
+    letter-spacing: 2px !important;
 }
 
 h1, h2, h3 {
@@ -47,7 +45,7 @@ button, input, textarea {
 
 button:active { 
     transform: translateY(4px); 
-    box-shadow: none; /* 移除点击效果 */
+    box-shadow: none; 
 }
 
 ul { list-style: none; padding: 0; }
@@ -100,6 +98,7 @@ li {
     position: relative;
     overflow: hidden; 
     margin: 20px auto;
+    display: none; /* 默认隐藏，由 app.js 控制显示 */
 }
 
 /* 蒸汽动画元素 */
@@ -109,7 +108,7 @@ li {
     background-color: rgba(255, 255, 255, 0.7);
     border-radius: 50%;
     position: absolute;
-    top: 50px; /* 从茶杯口附近开始 */
+    top: 50px; 
     left: 50%;
     opacity: 0;
     animation: steam-puff 2s ease-out infinite;
@@ -124,7 +123,7 @@ li {
     }
     100% {
         opacity: 0;
-        transform: translate(-50%, -100px) scale(1.5); /* 向上飘并放大 */
+        transform: translate(-50%, -100px) scale(1.5); 
     }
 }
 
@@ -132,7 +131,7 @@ li {
 .leaf {
     width: 8px;
     height: 8px;
-    background-color: #556b2f; /* 深绿色 */
+    background-color: #556b2f; 
     border-radius: 50%;
     position: absolute;
     bottom: 0;
