@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>现实逃离の茶水间</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script type="module" src="app.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
+</head>
+<body>
+    <div id="title-container">
+        <h1 id="main-title"><span data-char="现">现</span><span data-char="实">实</span><span data-char="逃">逃</span><span data-char="离">离</span><span data-char="の">の</span><span data-char="茶">茶</span><span data-char="水">水</span><span data-char="间">间</span></h1>
+        <div id="teacup"></div>
+    </div>
+
+    <div id="admin-login" style="display:none;">
+        <input type="password" id="admin-pass" placeholder="管理员密码">
+        <button onclick="loginAdmin()">进入管理</button>
+    </div>
+
+    <div id="main-app">
+        <section id="home">
+            <input type="text" id="search-box" placeholder="搜索议题标题...">
+            <button onclick="searchTopics()">搜索</button>
+            <button onclick="showSubmit()">提交议题</button>
+            <button onclick="showVote()" id="vote-btn" style="display:none;">投票</button>
+            <button onclick="showAdminControls()" id="admin-btn" style="display:none;">管理员</button>
+
+            <h2>未讨论议题</h2>
+            <ul id="active-topics"></ul>
+
+            <h2>已讨论议题</h2>
+            <ul id="discussed-topics"></ul>
+        </section>
+
+        <section id="submit-section" style="display:none;">
+            <h2>提交议题</h2>
+            <input type="text" id="topic-title" placeholder="标题">
+            <textarea id="topic-content" placeholder="内容 (≤300字)" maxlength="300"></textarea>
+            <input type="text" id="submitter-name" placeholder="你的昵称 (如果不匿名)">
+            <label><input type="checkbox" id="anon-submit"> 匿名提交 (显示“匿名茶客”)</label>
+            <p>今日剩余: <span id="remain-submits">3</span></p>
+            <button onclick="submitTopic()">提交</button>
+            <div id="submit-animation"></div>
+        </section>
+
+        <section id="vote-section" style="display:none;">
+            <h2>投票 (拖拽排序)</h2>
+            <ul id="sortable-vote"></ul>
+            <button onclick="submitVote()">提交</button>
+            <div id="vote-animation"></div>
+        </section>
+
+        <section id="meeting-section" style="display:none;">
+            <h2 id="meeting-title"></h2>
+            <p id="meeting-desc"></p>
+            <p id="meeting-date"></p>
+            <h3>感想区</h3>
+            <ul id="comments-list"></ul>
+            <textarea id="new-comment" placeholder="添加感想"></textarea>
+            <p class="prompt">可以选择在感想中留下署名。</p>
+            <button onclick="addComment()">提交</button>
+        </section>
+
+        <section id="admin-section" style="display:none;">
+            <h2>管理员控制台</h2>
+            <button onclick="createRound()">激活当前轮次</button>
+            <input type="datetime-local" id="deadline-input">
+            <button onclick="setDeadline()">设置截止</button>
+            <button onclick="endRound()">结束轮次并选当选议题</button>
+            <ul id="admin-topics"></ul>
+        </section>
+    </div>
+</body>
+</html>
