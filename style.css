@@ -15,7 +15,14 @@ body {
 h1, h2, h3 {
     text-align: center;
     text-shadow: 2px 2px #fff;
-    letter-spacing: 4px; /* 字间距大 */
+    letter-spacing: 2px; /* 原来可能是4px，改小一点避免字被挤掉 */
+}
+
+#main-title {
+    font-size: 1.3em; /* 稍微缩小，确保所有字显示 */
+    white-space: nowrap;
+    overflow: visible;
+    letter-spacing: 3px; /* 可微调，3px通常正好 */
 }
 
 #main-title {
