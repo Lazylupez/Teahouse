@@ -1,7 +1,20 @@
+/* style.css (修复和增强版) */
+
+/* 1. 引入中文字体（请替换为你实际的字体文件路径） */
+/* @font-face {
+    font-family: 'PixelFontChinese';
+    src: url('pixel_chinese.woff2') format('woff2'); /* 假设你使用 woff2 格式 */
+    font-weight: normal;
+    font-style: normal;
+}
+*/
+/* 注意：由于你没有提供字体文件，我将使用常见的像素英文字体作为后备 */
+
 body {
-    background: rgb(202,197,160);
+    /* 你的背景和颜色保持不变 */
     background: linear-gradient(to bottom, #e0d9c0, #cac580);
-    font-family: monospace, 'Courier New', Courier;
+    /* 优先使用你想要的像素字体，后备 Monospace */
+    font-family: 'PixelFontChinese', monospace, 'Courier New', Courier; 
     color: #4b3621;
     margin: 0;
     padding: 20px;
@@ -11,7 +24,8 @@ body {
 }
 
 *, button, input, textarea {
-    font-family: monospace !important;
+    /* 确保所有元素都使用像素字体 */
+    font-family: 'PixelFontChinese', monospace !important;
     letter-spacing: 2px !important;
 }
 
@@ -45,4 +59,106 @@ ul { list-style: none; padding: 0; }
 
 li {
     background: #f5deb3;
-    border: 4px solid #8b451
+    /* 修复你代码中被截断的部分 */
+    border: 4px solid #8b4513; 
+    padding: 10px;
+    margin: 10px 0;
+    line-height: 1.5;
+}
+
+/* --- 修复动画问题所需的样式 --- */
+
+/* 2. 茶杯图样 */
+#title-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#teacup {
+    width: 80px; 
+    height: 60px;
+    margin-top: -10px;
+    background-color: #f5deb3; /* 茶杯主体颜色 */
+    border: 4px solid #8b4513;
+    border-top: none;
+    border-radius: 0 0 10px 10px;
+    position: relative;
+}
+#teacup::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70px;
+    height: 10px;
+    background: #c6a782; /* 茶水颜色 */
+    border: 4px solid #8b4513;
+    border-radius: 5px 5px 0 0;
+}
+
+
+/* 3. 蒸汽动画基础样式 */
+.steam {
+    width: 10px;
+    height: 10px;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    opacity: 0;
+    animation: steam-puff 2s ease-out infinite;
+    transform: translate(-50%, -50%);
+}
+
+#submit-animation, #vote-animation {
+    text-align: center;
+    height: 50px; /* 留出动画空间 */
+    position: relative;
+    overflow: hidden; /* 确保蒸汽/茶叶不会影响布局 */
+    margin: 20px auto;
+}
+
+/* 蒸汽动画关键帧 */
+@keyframes steam-puff {
+    0% {
+        opacity: 0.8;
+        transform: translate(-50%, 0) scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -100px) scale(1.5); /* 向上飘并放大 */
+    }
+}
+
+/* 茶叶动画基础样式 */
+.leaf {
+    width: 8px;
+    height: 8px;
+    background-color: #556b2f; /* 深绿色 */
+    border-radius: 50%;
+    position: absolute;
+    bottom: 0;
+    left: 45%;
+    opacity: 0;
+    animation: leaf-swirl 2s ease-in-out infinite;
+}
+
+/* 茶叶动画关键帧 */
+@keyframes leaf-swirl {
+    0% {
+        opacity: 0.8;
+        transform: translateY(0) rotate(0deg);
+    }
+    50% {
+        opacity: 0.5;
+        transform: translateY(-20px) rotate(90deg) translateX(5px);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-40px) rotate(180deg) translateX(-5px);
+    }
+}
